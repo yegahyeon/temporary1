@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920" />
+<title>대부도 펜션시티</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+<link rel="stylesheet" href="css/styles.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+<script src="js/main.js"></script>
+
+
+</head>
+<body>
+<div class="v6-pc">
+  <div class="top-btn">
+    <div class="scroll-bg"><img src="./source/scrollto.svg" alt=""></div>
+    <div class="scroll-arrow"><img src="./source/boxicons_arrow-up-filled.svg" alt=""></div>
+  </div>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="logo">
+      <img src="./source/main-logo.svg" alt="대부도 펜션시티 로고" />
+    </div>
+    <ul class="gnb">
+      <li><a href="#event">주중 이벤트</a></li>
+      <li><a href="#play">액티비티</a></li>
+      <li><a href="#amenities">부대시설</a></li>
+      <li><a href="#parking">주차장</a></li>
+      <li><a href="#rooms">객실안내</a></li>
+      <li><a href="http://www.pensioncity.kr/bbs/board.php?bo_table=pensionstatus&rmType=A">즉시예약</a></li>
+    </ul>
+  </header>
+
+  <!-- 배경 그라데이션 (Hero 영역) -->
+  <div class="bg-gradient"></div>
+
+  <!-- 메인 둥근 사각형 이미지 (회전된 장식) -->
+  <div class="hero-img">
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+  </div>
+
+
+
+  <!-- 히어로 타이틀 -->
+  <div class="title-wrap">
+    <div class="hero-title">
+      <p>대부도</p>
+      <p class="hero-title-mid">펜션</p>
+      <p>시티</p>
+    </div>
+    <!-- 히어로 강조 라벨 -->
+    <div class="hero-tag">
+      <span>모두 모여 더 크게 놀자!</span>
+    </div>
+  </div>
+
+  <!-- 소개 섹션 -->
+  <section class="intro">
+    <img class="spring-img" src="./source/spring.svg" alt="">
+    <div class="intro-image">
+      <img class="img-in" src="./source/sect1.png" alt="대부도 펜션시티 전경" />
+    </div>
+    <div class="intro-text">
+      <div class="intro-tag">#대부도_펜션시티</div>
+      <h2>
+        <span>가족, 친구들뿐만이 아닌</span>
+        <span>동료들과도 즐거운 시간을 보낼 수 있는</span>
+        <span>여기는 <em class="highlight-bg">대부도 펜션시티</em> 입니다.</span>
+      </h2>
+    </div>
+  </section>
+
+  <!-- 흐르는 띠 1 (단체전문펜션) -->
+  <div class="marquee marquee-1">
+    <div class="marquee-track">
+      <!-- 원본 세트 -->
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+      <!-- 복제 세트 (끊김 없는 루프용) -->
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+      <span>단체전문펜션</span><span>단체전문펜션</span><span>단체전문펜션</span>
+    </div>
+  </div>
+
+  <!-- 흐르는 띠 2 (대부도펜션시티 - 회전됨) -->
+  <div class="marquee marquee-2">
+    <div class="marquee-track">
+      <div class="marquee-inner">
+        <!-- 원본 세트 -->
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+        <!-- 복제 세트 (끊김 없는 루프용) -->
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+        <span>대부도펜션시티</span><span>대부도펜션시티</span><span>대부도펜션시티</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 주중 특별 이벤트 -->
+  <section class="event" id="event">
+    <div class="event-bg-text">
+      <p>대부도 펜션시티에 단체 숙소를 쉽게 예약<br>
+      하세요! 얼마 남지  않은 예약 이벤트를 빠르게<br>
+      <span class="white">주중 특별 이벤트</span>, 다른말은 필요없습니다.<br>
+      기존 1,000,000원에서 <span class="white">30% 할인된</span><br>
+      <span class="white">10년전 금액에</span> 대부도 펜션 예약 가능합니다.<br>
+      더욱 나은 서비스, 고객님의 편리함을 위해<br>
+      최선을 다하고 모든 서비스가 갖춰져 있는<br>
+      대부도 펜션시티에서 즐거운 추억을 만들어보세요</p>
+    </div>
+    <div class="event-image-mask">
+      <img src="./source/Mask group.png" alt="펜션 전경" />
+    </div>
+    <div class="event-overlay">
+      <div class="event-title">
+        <div class="event-sub">주중 10년 전 가격 그대로!</div>
+        <div class="event-main">주중 예약하시는 고객님을 위한</div>
+      </div>
+      <a href="http://www.pensioncity.kr/bbs/board.php?bo_table=pensionstatus&rmType=A" class="event-cta">즉시 예약하기</a>
+    </div>
+  </section>
+
+  <!-- 놀거리 헤더 -->
+  <section class="play" id="play">
+    <img src="./source/confetti.png" alt="" class="deco">
+    <div class="play-title">
+      <div class="sub-tag">#대부도_펜션시티</div>
+      <h2>
+        대부도 펜션시티의<br/>다양한 놀거리로 즐거움 2배!
+      </h2>
+    </div>
+
+    <!-- 놀거리 그리드 -->
+    <div class="play-grid">
+      <div class="play-cell">
+        <img src="./source/act1.png" alt="" />
+        <span class="play-label">대형운동장</span>
+          <div class="play-highlight active">
+            <div class="highlight-badge">ENJOY</div>
+            <h3>대형운동장</h3>
+            <p>족구장, 축구장 등 다양하게 활용 가능한 대형운동장은 여러분의 여행에서 건강함을 선사합니다.</p>
+            <p class="view-more">더보기</p>
+        </div>
+      </div>
+
+      <div class="play-cell">  
+        <img src="./source/act2.png" alt="" /> 
+        <span class="play-label">서바이벌, ATV</span>
+        <div class="play-highlight">
+          <div class="highlight-badge">ENJOY</div>
+          <h3>서바이벌 , ATV</h3>
+          <p>체계적인 프로그램, 최신 고급 장비,<br/>국내 최고 수준의 전문 교관 운영,<br/>영업배상책임보험까지 갖춘 프리미엄<br/>서비스입니다.</p>
+          <p class="view-more">더보기</p>
+        </div>
+      </div>
+
+      <div class="play-cell">
+        <img src="./source/act3.png" alt="" />
+        <span class="play-label">갯벌체험</span>
+        <div class="play-highlight">
+          <div class="highlight-badge">ENJOY</div>
+          <h3>갯벌체험</h3>
+          <p>서해의 대표 자연놀이터, 대부도펜션시티 단지안에서 즐길 수 있는 갯벌체험장</p>
+          <p class="view-more">더보기</p>
+        </div>
+      </div>
+
+      <div class="play-cell">
+        <img src="./source/act4.png" alt="" />
+        <span class="play-label">자전거&바이크 대여</span>
+        <div class="play-highlight">
+          <div class="highlight-badge">ENJOY</div>
+          <h3>자전거&바이크 대여</h3>
+          <p>4만평 대단지를 맑은 공기와 함께 둘러볼 수 있는 Activity 시설 5인용가족형자전거와 삼발이 전동스쿠터를 체험해보세요!</p>
+          <p class="view-more">더보기</p>
+        </div>
+      </div>
+
+      <div class="play-cell">
+        <img src="./source/act5.png" alt="" />
+        <span class="play-label">워터파크</span>
+        <div class="play-highlight">
+          <div class="highlight-badge">ENJOY</div>
+          <h3>워터파크</h3>
+          <p>성인풀 / 아쿠아풀 / 유수풀 / 유아용풀의 맞춤형 수영장과 바운스 슬라이드 미끄럼틀! 청전자연과 함께하는 시원한 물놀이를 즐겨보세요.</p>
+          <p class="view-more">더보기</p>
+        </div>
+      </div>
+
+      <div class="play-cell"> 
+        <img src="./source/act6.png" alt="" />
+        <span class="play-label">클럽,노래방,당구장</span>
+        <div class="play-highlight">
+          <div class="highlight-badge">ENTERTAINMENT</div>
+          <h3>클럽,노래방,당구장</h3>
+          <p>래방 최신곡 UPDATE, 5.1CH의 사운드, 화려한 미러조명, 마이크사운드 최고의 제품으로 구성된 파티공간</p>
+          <p class="view-more">더보기</p>
+        </div>
+      </div>
+
+      <div class="play-cell">
+        <img src="./source/act7.png" alt="" />
+        <span class="play-label">놀이터</span>
+        <div class="play-highlight">
+          <div class="highlight-badge">KIDS</div>
+          <h3>놀이터</h3>
+          <p>아이들을 위한 놀이공간! 미끄럼틀과 그네, 시소와, 모래놀이터로 자유롭게 놀 수 있는 맞춤형 놀이공간</p>
+          <p class="view-more">더보기</p>
+        </div>
+      </div>
+
+      <div class="play-cell">
+        <img src="./source/act8.png" alt="" />
+        <span class="play-label">대형강당</span>
+        <div class="play-highlight">
+          <div class="highlight-badge">ENJOY</div>
+          <h3>대형강당</h3>
+          <p>깔끔하고 넉넉한 세미나실, 확 트인 자연경관에서 힐링 '열정' 소통의 장이 되는 당신의 꿈과 미래가 현실이 되는 단체세미나실</p>
+          <p class="view-more">더보기</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 부대시설 섹션 (검정 배경) -->
+  <section class="amenities" id="amenities">
+    <img src="./source/confetti2.png" alt="" class="deco2">
+    <div class="amenities-inner">
+      <div class="amenities-left">
+        <div class="sub-tag">대부도 펜션시티의 부대시설!</div>
+        <h2 class="amenities-heading">
+          마트부터 편의점, 카페 등<br/>
+          모든 편의 시설을 갖춘<br/>
+          대부도 펜션 시티!
+        </h2>
+      </div>
+
+
+
+      <div class="amenities-right">
+        <div class="amenity">
+          <img class="amenity-num" src="./source/num1.png" alt="">
+          <div class="amenity-img">
+            <img src="./source/fac1.png" alt="이마트 24" />
+          </div>
+          <h3>이마트 24</h3>
+          <p>생활용품, 술, 과자 등 편리하게 구매할 수 있는 편의점이 대부도 펜션시티 내에!</p>
+        </div>
+        <div class="amenity">
+          <img class="amenity-num" src="./source/num2.png" alt="">
+          <div class="amenity-img">
+            <img src="./source/fac2.png" alt="마트" />
+          </div>
+          <h3>마트</h3>
+          <p>장작부터 식재료, 바베큐 재료까지 한번에 구매할 수 있어요!</p>
+        </div>
+        <div class="amenity">
+          <img class="amenity-num" src="./source/num3.png" alt="">
+          <div class="amenity-img">
+            <img src="./source/fac3.png" alt="카페" />
+          </div>
+          <h3>카페</h3>
+          <p>아름다운 전경을 즐기며 카페인을 충전할 수 있는 카페!</p>
+        </div>
+        <div class="amenity">
+          <img class="amenity-num" src="./source/num4.png" alt="">
+          <div class="amenity-img">
+            <img src="./source/fac4.png" alt="씨티가든" />
+          </div>
+          <h3>씨티가든</h3>
+          <p>다양한 메뉴들로 푸짐하게 즐겨보세요!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주차장 안내 -->
+  <section class="parking" id="parking">
+    <div class="parking-title">
+      <div class="sub-tag">더 이상 주차로 괴로워하지 마세요!</div>
+      <h2>객실 별 대형주차장 완비!</h2>
+    </div>
+    <div class="parking-images">
+      <div class="parking-img">
+        <img src="./source/parkinglot1.png" alt="대형주차장 1" />
+      </div>
+      <div class="parking-img">
+        <img src="./source/parkinglot2.png" alt="대형주차장 2" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 객실 안내 -->
+  <section class="rooms" id="rooms">
+    <div class="rooms-bg"></div>
+    <div class="rooms-title">
+      <div class="sub-tag">객실 별 금액 안내</div>
+      <h2>객실 안내</h2>
+    </div>
+    <div class="swiper room-swiper">
+ 
+      <div class="swiper-wrapper">
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_01_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card1.png" alt="지중해동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">지중해동 <span class="room-size">180평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">30</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">1,430,000</span></div>
+                </div> 
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">40</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,090,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_02_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card2.png" alt="런던동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">런던<span class="room-size">120평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">20</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">710,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">24</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,050,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_03_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card3.png" alt="파리동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">파리동<span class="room-size">99평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">16</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">710,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">20</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,050,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_04_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card4.png" alt="로마동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">로마동<span class="room-size">120평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">16</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">1,430,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">20</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,090,000</span></div>
+                </div>
+              </div>
+            </div>
+
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_05_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card5.png" alt="네덜란드동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">네덜란드동<span class="room-size">73평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">12</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">1,430,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">15</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,090,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_14_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card6.png" alt="비엔나동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">비엔나동<span class="room-size">65평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">10</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">710,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">14</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,050,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_06_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card7.png" alt="스위스동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">스위스동<span class="room-size">55평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">10</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">1,430,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">12</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,090,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_07_3.php" target='_blank'>
+            <div class="room-img"><img src="./source/card8.png" alt="알프스동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">알프스동<span class="room-size">49평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">8</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">710,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">10</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,050,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_13_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card9.png" alt="쁘랭땅동" /></div>
+            <div class="room-info">
+               <div class="room-detail">
+                <div class="room-name">쁘랭땅동<span class="room-size">46평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">6</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">1,430,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">8</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,090,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="room-card swiper-slide">
+          <a href="http://www.pensioncity.kr/theme/pensioncity/sub_08_1.php" target='_blank'>
+            <div class="room-img"><img src="./source/card10.png" alt="오페라동" /></div>
+            <div class="room-info">
+              <div class="room-detail">
+                <div class="room-name">오페라동<span class="room-size">40평형</span></div>
+                <div class="room-arrow">자세히 보기 ›</div>
+              </div>
+              <div class="room-meta">
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">평균인원</span><span class="meta-value">6</span></div>
+                  <div class="meta-row"><span class="meta-label">주말가격</span><span class="meta-value">710,000</span></div>
+                </div>
+                <div class="meta-col">
+                  <div class="meta-row"><span class="meta-label">최대인원</span><span class="meta-value">8</span></div>
+                  <div class="meta-row"><span class="meta-label">주중가격</span><span class="meta-value">1,050,000</span></div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="swiper-scrollbar"></div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-customer">
+          <p class="cc-label">CUSTOMER CENTER</p>
+          <p class="cc-phone">1577-0616</p>
+          <p class="cc-hours">고객상담 AM 09:00 ~ PM 06:00</p>
+        </div>
+        <div class="footer-info">
+          <div class="footer-logo">
+            <img src="./source/main-logo.svg" alt="대부도 펜션시티 로고" />
+          </div>
+          <p class="footer-addr">주소 : 경기도 안산시 단원구 공마루길 68-3번지 (구) 경기도 안산시 단원구 대부동동 1567-20</p>
+          <p class="footer-contact">
+            <span>E-MAIL : ps_city@naver.com</span>
+            <span class="divider"></span>
+            <span>FAX번호 : 032-889-4446</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-line"></div>
+
+      <div class="footer-bottom">
+        <p>Copyright 2012 pensioncity. All rights reserved.</p>
+        <p class="footer-legal">
+          <span>사업자번호 : 134-87-18541</span>
+          <span class="divider"></span>
+          <span>통신판매신고 : 제 2016-경기안산 0273</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 놀거리 모달 -->
+  <div class="play-modal" id="playModal">
+    <div class="play-modal-wrap">
+      <button class="play-modal-close-btn" id="playModalClose">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6L18 18"/></svg>
+        닫기
+      </button>
+      <div class="pm-body">
+        <button class="pm-arrow" id="pmPrev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="swiper pm-swiper" id="playModalSwiper">
+          <div class="swiper-wrapper" id="playModalSwiperWrapper"></div>
+        </div>
+        <button class="pm-arrow" id="pmNext">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="play-modal-cursor" id="playModalCursor"><span>닫기</span></div>
+  </div>
+
+</div>
+</body>
+</html>
