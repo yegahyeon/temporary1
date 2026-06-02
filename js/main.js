@@ -10,6 +10,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    // 햄버거 메뉴
+    const hamburger = document.getElementById('hamburger');
+    const gnb = document.querySelector('.gnb');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        gnb.classList.toggle('open');
+        document.body.style.overflow = gnb.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.gnb a').forEach(a => {
+        a.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            gnb.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1200) {
+            hamburger.classList.remove('open');
+            gnb.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+
 
     gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,SplitText)
     
@@ -61,10 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // .event 섹션 핀 (고정) - 별도 ScrollTrigger
-    ScrollTrigger.create({
-        trigger: ".event",
-        start: "top -15%",
-        pin: true,
+    const mmEvent = gsap.matchMedia();
+    mmEvent.add("(min-width: 1201px)", () => {
+        ScrollTrigger.create({
+            trigger: ".event",
+            start: "top -15%",
+            pin: true,
+        });
+    });
+    mmEvent.add("(min-width: 481px) and (max-width: 1200px)", () => {
+        ScrollTrigger.create({
+            trigger: ".event",
+            start: "center center",
+            pin: true,
+        });
+    });
+    mmEvent.add("(max-width: 480px)", () => {
+        ScrollTrigger.create({
+            trigger: ".event",
+            start: "top top+=68",
+            pin: true,
+        });
     });
 
     // Newsplit → event-cta 순서 보장: ScrollTrigger를 타임라인 하나에만
@@ -223,30 +263,43 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.set(amenityItems,        { opacity: 0, y: 80 });
     gsap.set(amenityItems[0],     { opacity: 1, y: 0  });
 
-    const tl4 = gsap.timeline({
-        scrollTrigger: {
-            trigger : ".amenities-inner",
-            start   : "top 20%",
-            end     : `+=${(amenityItems.length - 1) * 600}`,
-            pin     : true,
-            scrub   : 1,
-            // markers: true,
-        }
+    const buildAmenityAnim = (tl) => {
+        amenityItems.forEach((item, i) => {
+            if (i === 0) return;
+            tl
+                .to(item, { y: 0, opacity: 1 })
+                .to(amenityItems[i - 1], { opacity: 0 }, ">-0.4");
+        });
+    };
+
+    const mmAmenity = gsap.matchMedia();
+
+    mmAmenity.add("(min-width: 481px)", () => {
+        const tl4 = gsap.timeline({
+            scrollTrigger: {
+                trigger : ".amenities",
+                start   : "top top",
+                end     : `+=${(amenityItems.length - 1) * window.innerHeight}`,
+                pin     : true,
+                scrub   : 1,
+                // markers: true,
+            }
+        });
+        buildAmenityAnim(tl4);
     });
 
-    amenityItems.forEach((item, i) => {
-        if (i === 0) return;
-
-        tl4
-            // ① 새 카드: 아래서 위로 슬라이드하며 등장 (카드 올려 쌓기)
-            .to(item, {
-                y: 0,
-                opacity: 1,
-            })
-            // ② 이전 카드: 새 카드가 거의 도착할 때 뒤에서 fade out
-            .to(amenityItems[i - 1], {
-                opacity: 0,
-            }, ">-0.4"); // 새 카드 슬라이드 완료 0.4 전부터 시작
+    mmAmenity.add("(max-width: 480px)", () => {
+        const tl4 = gsap.timeline({
+            scrollTrigger: {
+                trigger : ".amenities",
+                start   : "top 5%",
+                end     : `+=${amenityItems.length * window.innerHeight}`,
+                pin     : true,
+                scrub   : 1,
+                // markers: true,
+            }
+        });
+        buildAmenityAnim(tl4);
     });
     // 부대시설 end
 
