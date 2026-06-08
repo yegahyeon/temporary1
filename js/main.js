@@ -1,14 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // header 스크롤 시작 시 투명도
-    const header = document.querySelector(".header")
+    const header = document.querySelector(".header");
 
-    window.addEventListener("scroll",function () {
-        if (scrollY != 0) {
-            header.style.backgroundColor = "rgba(255,255,255,1)"
-        } else {
-            header.style.backgroundColor = "rgba(255,255,255,0)"
-        }
-    })
+    let rafId;
+    window.addEventListener("scroll", () => {
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+            header.style.backgroundColor = scrollY !== 0
+                ? "rgba(255,255,255,1)"
+                : "rgba(255,255,255,0)";
+            rafId = null;
+        });
+    });
 
     // 햄버거 메뉴
     const hamburger = document.getElementById('hamburger');
@@ -25,14 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.style.overflow = '';
         });
     });
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 1200) {
-            hamburger.classList.remove('open');
-            gnb.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        updateEventText();
-    });
 
     const eventBgText       = document.querySelector('.event-bg-text:not(.event-bg-text-mobile)');
     const eventBgTextMobile = document.querySelector('.event-bg-text-mobile');
@@ -48,145 +42,102 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     updateEventText();
 
-
-    gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,SplitText)
-    
-    // 주중예약 배경 스플릿텍스트
-    let Newsplit = SplitText.create(".event-bg-text span", {
-        type: "chars",
-        mask: "chars"
-
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1200) {
+            hamburger.classList.remove('open');
+            gnb.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(updateEventText, 150);
     });
-    // heroTitle
-    //tweens are inserted at and relative to a label's position
-    let tl = gsap.timeline();
+
+
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText);
+
+    const Newsplit = SplitText.create(".event-bg-text span", {
+        type: "chars",
+        mask: "chars",
+    });
+
+    const tl = gsap.timeline();
     tl.from(".hero-deco", {
         duration: 0.4,
-        x: 100 ,
-        opacity: 0 ,
-        stagger: 0.3 ,
-        ease: "power4.out"
+        x: 100,
+        opacity: 0,
+        stagger: 0.3,
+        ease: "power4.out",
     })
-      .from(".hero-title p", {duration: 0.4, x: -1062 ,opacity:0})
-      .from(".hero-tag", {duration: 0.6, x: -1062, rotation: 360}, "blueSpin");
-
+      .from(".hero-title p", { duration: 0.4, x: -1062, opacity: 0 })
+      .from(".hero-tag", { duration: 0.6, x: -1062, rotation: 360 }, "blueSpin");
 
     const tl2 = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".img-in",
-        start: "top 80%",
-        // markers: true,  // 디버깅 시 주석 해제
-    }
+        scrollTrigger: {
+            trigger: ".img-in",
+            start: "top 80%",
+        }
     });
+    tl2.from(".img-in", { height: "3px", duration: 0.3 })
+       .from(".intro-text span", { duration: 0.4, y: 50, opacity: 0, stagger: 0.2 })
+       .from(".intro-tag", { duration: 0.2, y: 30, opacity: 0 });
 
-    // 이미지 확장
-    tl2.from(".img-in", {
-        height: "3px",          // ② 그 다음 세로 0 → 원래 높이로
-        duration: 0.3,
-
-    })
-    // 이미지 상단 타이틀
-    .from(".intro-text span", {
-        duration: 0.4,
-        y: 50,
-        opacity: 0,
-        stagger: 0.2
-    })
-    .from(".intro-tag", {
-        duration: 0.2,
-        y: 30,
-        opacity: 0
-    });
-
-    // .event 섹션 핀 (고정) - 별도 ScrollTrigger
+    // .event 섹션 핀
     const mmEvent = gsap.matchMedia();
     mmEvent.add("(min-width: 1201px)", () => {
-        ScrollTrigger.create({
-            trigger: ".event",
-            start: "top -15%",
-            pin: true,
-        });
+        ScrollTrigger.create({ trigger: ".event", start: "top -15%", pin: true });
     });
     mmEvent.add("(min-width: 481px) and (max-width: 1200px)", () => {
-        ScrollTrigger.create({
-            trigger: ".event",
-            start: "center center",
-            pin: true,
-        });
+        ScrollTrigger.create({ trigger: ".event", start: "center center", pin: true });
     });
     mmEvent.add("(max-width: 480px)", () => {
-        ScrollTrigger.create({
-            trigger: ".event",
-            start: "top top+=68",
-            pin: true,
-        });
+        ScrollTrigger.create({ trigger: ".event", start: "top top+=68", pin: true });
     });
 
-    // Newsplit → event-cta 순서 보장: ScrollTrigger를 타임라인 하나에만
     const tl3 = gsap.timeline({
         scrollTrigger: {
             trigger: ".event",
             start: "top 60%",
             end: "bottom 30%",
             scrub: 1,
-            // markers: true,   // 디버깅 시 주석 해제
         }
     });
-
     tl3
-    .from(Newsplit.chars, {
-        color: "rgba(255, 255, 255, 0.15)",
-        duration: 0.5,
-        stagger: 0.1,
-    })
-    .from(".event-cta", {         // Newsplit 끝난 뒤 실행
-        y: -20,
-        opacity: 0,
-        duration: 0.5,
-    });
+        .from(Newsplit.chars, { color: "rgba(255, 255, 255, 0.15)", duration: 0.5, stagger: 0.1 })
+        .from(".event-cta", { y: -20, opacity: 0, duration: 0.5 });
 
 
-
-
-    // 놀거리 start 
-    const cards = document.querySelectorAll(".play-cell");
-
-    cards.forEach(card => {
+    // 놀거리
+    document.querySelectorAll(".play-cell").forEach(card => {
         const highlight = card.querySelector(".play-highlight");
-        const label = card.querySelector(".play-label")
-        
-        card.addEventListener("mouseenter", function () {
+        const label = card.querySelector(".play-label");
+        card.addEventListener("mouseenter", () => {
             if (highlight) highlight.classList.add("on");
-            label.classList.add("off")
+            label.classList.add("off");
         });
-        
-        card.addEventListener("mouseleave", function () {
+        card.addEventListener("mouseleave", () => {
             if (highlight) highlight.classList.remove("on");
-            label.classList.remove("off")
+            label.classList.remove("off");
         });
     });
-    // 놀거리 end
 
-    // ===== 놀거리 모달 스와이퍼 =====
+    // 놀거리 모달 스와이퍼
     const playModalData = [
-        { badge: 'ENJOY',         title: '대형운동장',        imgs: ['/source/act1.png', '/source/act1-2.jpg', '/source/act1-3.jpg'] },
-        { badge: 'ENJOY',         title: '서바이벌, ATV',     imgs: ['/source/act2.png', '/source/act2-2.jpg', '/source/act2-3.jpg'] },
-        { badge: 'ENJOY',         title: '갯벌체험',          imgs: ['/source/act3.png', '/source/act3-2.jpg', '/source/act3-3.jpg'] },
-        { badge: 'ENJOY',         title: '자전거&바이크 대여', imgs: ['/source/act4.png', '/source/act4-2.jpg', '/source/act4-3.jpg'] },
-        { badge: 'ENJOY',         title: '워터파크',           imgs: ['/source/act5.png', '/source/act5-2.jpg', '/source/act5-3.jpg'] },
-        { badge: 'ENTERTAINMENT', title: '클럽, 노래방, 당구장', imgs: ['/source/act6.png', '/source/act6-2.jpg', '/source/act6-3.jpg'] },
-        { badge: 'KIDS',          title: '놀이터',             imgs: ['/source/act7.png', '/source/act7-2.jpg', '/source/act7-3.jpg'] },
-        { badge: 'ENJOY',         title: '대형강당',           imgs: ['/source/act8.png', '/source/act8-2.jpg', '/source/act8-3.jpg'] },
+        { badge: 'ENJOY',         title: '대형운동장',          imgs: ['./source/act1.png', './source/act1-2.jpg', './source/act1-3.jpg'] },
+        { badge: 'ENJOY',         title: '서바이벌, ATV',       imgs: ['./source/act2.png', './source/act2-2.jpg', './source/act2-3.jpg'] },
+        { badge: 'ENJOY',         title: '갯벌체험',            imgs: ['./source/act3.png', './source/act3-2.jpg', './source/act3-3.jpg'] },
+        { badge: 'ENJOY',         title: '자전거&바이크 대여',   imgs: ['./source/act4.png', './source/act4-2.jpg', './source/act4-3.jpg'] },
+        { badge: 'ENJOY',         title: '워터파크',            imgs: ['./source/act5.png', './source/act5-2.jpg', './source/act5-3.jpg'] },
+        { badge: 'ENTERTAINMENT', title: '클럽, 노래방, 당구장', imgs: ['./source/act6.png', './source/act6-2.jpg', './source/act6-3.jpg'] },
+        { badge: 'KIDS',          title: '놀이터',              imgs: ['./source/act7.png', './source/act7-2.jpg', './source/act7-3.jpg'] },
+        { badge: 'ENJOY',         title: '대형강당',            imgs: ['./source/act8.png', './source/act8-2.jpg', './source/act8-3.jpg'] },
     ];
 
-    const playModal    = document.getElementById('playModal');
+    const playModal       = document.getElementById('playModal');
     const playModalClose  = document.getElementById('playModalClose');
     const playModalWrapper = document.getElementById('playModalSwiperWrapper');
-    const playModalCursor  = document.getElementById('playModalCursor');
-    const pmPrev = document.getElementById('pmPrev');
-    const pmNext = document.getElementById('pmNext');
+    const playModalCursor = document.getElementById('playModalCursor');
 
-    // 슬라이드 동적 생성
     playModalData.forEach(d => {
         const slide = document.createElement('div');
         slide.className = 'swiper-slide';
@@ -206,15 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
         playModalWrapper.appendChild(slide);
     });
 
-    // Swiper 초기화
     const pmSwiper = new Swiper('#playModalSwiper', {
         slidesPerView: 1,
         speed: 500,
         loop: true,
-        navigation: {
-            prevEl: '#pmPrev',
-            nextEl: '#pmNext',
-        },
+        navigation: { prevEl: '#pmPrev', nextEl: '#pmNext' },
     });
 
     function openPlayModal(idx) {
@@ -222,32 +169,22 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = 'hidden';
         pmSwiper.slideToLoop(idx, 0);
     }
-
     function closePlayModal() {
         playModal.classList.remove('is-open', 'cursor-on-bg');
         document.body.style.overflow = '';
         playModalCursor.classList.remove('is-visible');
     }
 
-    // play-cell 클릭 시 해당 슬라이드로 오픈
     document.querySelectorAll('.play-cell').forEach((cell, i) => {
         cell.addEventListener('click', () => openPlayModal(i));
     });
-
-    // 닫기 버튼
     playModalClose.addEventListener('click', closePlayModal);
-
-    // 배경(dimmed) 클릭으로 닫기
     playModal.addEventListener('click', e => {
         if (!e.target.closest('.play-modal-wrap')) closePlayModal();
     });
-
-    // ESC 키
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && playModal.classList.contains('is-open')) closePlayModal();
     });
-
-    // 커스텀 커서 - dimmed 배경 위에서 "닫기" 원형 커서
     playModal.addEventListener('mousemove', e => {
         playModalCursor.style.left = e.clientX + 'px';
         playModalCursor.style.top  = e.clientY + 'px';
@@ -255,28 +192,20 @@ document.addEventListener("DOMContentLoaded", () => {
         playModalCursor.classList.toggle('is-visible', !onWrap);
         playModal.classList.toggle('cursor-on-bg', !onWrap);
     });
-
     playModal.addEventListener('mouseleave', () => {
         playModalCursor.classList.remove('is-visible');
         playModal.classList.remove('cursor-on-bg');
     });
 
 
-    // 부대시설 start
-    const amenityItems = document.querySelectorAll(".amenity");
+    // 부대시설
+    const amenityItems  = document.querySelectorAll(".amenity");
     const amenitiesRight = document.querySelector(".amenities-right");
 
-    // absolute 자식들로 인해 부모 height 0 → 첫 카드 높이로 고정
     amenitiesRight.style.height = amenityItems[0].offsetHeight + "px";
-
-    // z-index: 뒤에 쌓이는 카드일수록 위에 렌더링
-    amenityItems.forEach((item, i) => {
-        gsap.set(item, { zIndex: i + 1 });
-    });
-
-    // 초기 상태: 첫 카드만 보이고, 나머지는 살짝 아래에서 투명 대기
-    gsap.set(amenityItems,        { opacity: 0, y: 80 });
-    gsap.set(amenityItems[0],     { opacity: 1, y: 0  });
+    amenityItems.forEach((item, i) => gsap.set(item, { zIndex: i + 1 }));
+    gsap.set(amenityItems,     { opacity: 0, y: 80 });
+    gsap.set(amenityItems[0],  { opacity: 1, y: 0 });
 
     const buildAmenityAnim = (tl) => {
         amenityItems.forEach((item, i) => {
@@ -288,84 +217,68 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const mmAmenity = gsap.matchMedia();
-
     mmAmenity.add("(min-width: 481px)", () => {
         const tl4 = gsap.timeline({
             scrollTrigger: {
-                trigger : ".amenities",
-                start   : "top top",
-                end     : `+=${(amenityItems.length - 1) * window.innerHeight}`,
-                pin     : true,
-                scrub   : 1,
-                // markers: true,
+                trigger: ".amenities",
+                start: "top top",
+                end: `+=${(amenityItems.length - 1) * window.innerHeight}`,
+                pin: true,
+                scrub: 1,
             }
         });
         buildAmenityAnim(tl4);
     });
-
     mmAmenity.add("(max-width: 480px)", () => {
         const tl4 = gsap.timeline({
             scrollTrigger: {
-                trigger : ".amenities",
-                start   : "center center",
-                end     : `+=${amenityItems.length * window.innerHeight}`,
-                pin     : true,
-                scrub   : 1,
-                // markers: true,
+                trigger: ".amenities",
+                start: "center center",
+                end: `+=${amenityItems.length * window.innerHeight}`,
+                pin: true,
+                scrub: 1,
             }
         });
         buildAmenityAnim(tl4);
     });
-    // 부대시설 end
 
-    // 대형주차장 start
-    gsap.from(".parking-img",{
-            scrollTrigger: {
-            trigger : ".parking",
-            start  : "top 50%",
-            end  : "bottom 100%",
-            scrub   : 1,
-            // markers: true,
+
+    // 대형주차장
+    gsap.from(".parking-img", {
+        scrollTrigger: {
+            trigger: ".parking",
+            start: "top 50%",
+            end: "bottom 100%",
+            scrub: 1,
         },
         y: -50,
         opacity: 0,
-        stagger: 1    
+        stagger: 1,
+    });
 
-    })
-    // 대형주차장 end
-    
-    // 객실 안내 start
-    
-    // 스와이퍼
-    const swiper = new Swiper('.rooms .swiper', {
+    // 객실 안내
+    new Swiper('.rooms .swiper', {
         slidesPerView: 'auto',
         observer: true,
         observeParents: true,
         direction: 'horizontal',
         spaceBetween: 30,
-
-        scrollbar: {
-            el: '.swiper-scrollbar',
-        },
+        scrollbar: { el: '.swiper-scrollbar' },
     });
 
-    gsap.from(".rooms .swiper",{
-            scrollTrigger: {
-            trigger : ".rooms",
-            start  : "top 50%",
-            end  : "bottom 100%",
-            scrub   : 1,
-            // markers: true,
+    gsap.from(".rooms .swiper", {
+        scrollTrigger: {
+            trigger: ".rooms",
+            start: "top 50%",
+            end: "bottom 100%",
+            scrub: 1,
         },
         x: 100,
         opacity: 0,
-        stagger: 1   
+        stagger: 1,
+    });
 
-    })
-
-    // 객실 안내 end
-
-    // scroll to
+    // 스크롤 이동
     document.querySelectorAll(".gnb a[href^='#']").forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -378,12 +291,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-    const topBtn = document.querySelector(".top-btn")
-    topBtn.addEventListener("click", function () {
-        gsap.to(window, {
-            duration: 1,
-            scrollTo: 0,
-            ease: "power2.inOut",
-        });
-    })
-})
+
+    document.querySelector(".top-btn").addEventListener("click", () => {
+        gsap.to(window, { duration: 1, scrollTo: 0, ease: "power2.inOut" });
+    });
+});
