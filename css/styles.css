@@ -16,6 +16,12 @@ body {
 img { display: block; max-width: 100%; }
 a { text-decoration: none; color: inherit; }
 
+.hidden {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 /* ===== Layout ===== */
 .v6-pc {
   position: relative;
@@ -414,13 +420,30 @@ a { text-decoration: none; color: inherit; }
   left: 0px;
   font-family: 'KblJumpExtended', 'Pretendard Variable', sans-serif;
   font-weight: 400;
-  font-size: 4.8vw;
+  font-size: 4.75vw;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.15);
   white-space: nowrap;
   z-index: 1;
 }
 .event-bg-text .white { color: #fff; }
+
+.event-bg-text-mobile {
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  word-break: keep-all;
+}
+
+.event-bg-text-mobile .white {
+  line-height: 1.6;
+  font-size: 10vw;
+}
+
+.event-bg-text-mobile .white span {
+  font-size: 9vw;
+}
 
 .event-image-mask {
   position: absolute;
@@ -473,7 +496,7 @@ a { text-decoration: none; color: inherit; }
   background: #008cff;
   color: #fff;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 36px;
   padding: 18px 70px;
   border-radius: 10px;
   box-shadow: 0 0 16px 15px rgb(255 249 56 / 50%) ;
@@ -623,12 +646,13 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  /* overflow: hidden 제거 → sticky 작동을 위해 (페이지 overflow는 .v6-pc가 처리) */
+    overflow: hidden;
 }
 .deco2 {
   position: absolute;
 }
 .amenities-inner {
+
   max-width: 1820px;
   width: 100%;
   height: 100%;
@@ -638,11 +662,12 @@ a { text-decoration: none; color: inherit; }
   padding: 0 50px;
   position: relative;
   z-index: 5;
+  
 }
 .amenities-left {
   flex: 0 0 384px;
   position: sticky;
-  top: 180px;           /* sticky 실제 작동을 위한 top 값 */
+  top: 20px;           /* sticky 실제 작동을 위한 top 값 */
   left: 100px;
   align-self: flex-start;
 }
@@ -1168,9 +1193,13 @@ a { text-decoration: none; color: inherit; }
   .marquee-2 { height: 130px; margin-top: -120px; }
 
   /* 이벤트 */
+  .event {
+    height: 95vh !important;
+  }
+  
   /* .event {max-height: 800px; height: 800px; } */
   .event-bg-text p { width: 104%; font-size: 3.8rem; line-height: 1.5; white-space: normal; word-break: break-all; overflow-wrap: break-word; }
-  .event-bg-text br { display: none; }
+  .event-bg-text:not(.event-bg-text-mobile) br { display: none; }
   .event-bg-text {
     top: -40px;
   }
@@ -1184,8 +1213,8 @@ a { text-decoration: none; color: inherit; }
   }
   .event-overlay { padding: 60px 20px 60px; }
   .event-sub { font-size: 16px; }
-  .event-main { font-size: 26px; }
-  .event-cta { font-size: 20px; padding: 14px 40px; }
+  .event-main { font-size: 28px; }
+  .event-cta { font-size: 30px; padding: 14px 40px; }
 
   /* 놀거리 */
   .play { padding: 80px 0 0; }
@@ -1237,7 +1266,7 @@ a { text-decoration: none; color: inherit; }
   .play-label { display: none; }
 
   /* 부대시설 */
-  .amenities { padding-top: 180px !important; overflow: hidden; }
+  .amenities { padding-top: 180px !important; margin-top: 0; }
 
   .deco2 {top: -100px;}
   .amenities-inner {
@@ -1305,9 +1334,12 @@ a { text-decoration: none; color: inherit; }
   }
 
   .event-bg-text { font-size: 3.7rem; }
+  .event-bg-text-mobile{
+    top: 250px;
+  }
   .event-image-mask { height: 840px; margin-top: 160px; }
-  .event-main { font-size: 22px; }
-  .event-cta { font-size: 18px; padding: 12px 30px; }
+  .event-main { font-size: 28px; }
+  .event-cta { font-size: 24px; padding: 16px 40px; margin-bottom: 30px; }
 
   .play-grid { grid-template-columns: 1fr; grid-template-rows: auto; height: auto; }
   .play-cell { height: 220px; }
@@ -1323,16 +1355,7 @@ a { text-decoration: none; color: inherit; }
   .footer-logo { width: 140px; height: 50px; }
 }
 
-/* ===== 375px ===== */
-@media (max-width: 375px) {
-  .hero-title p { font-size: 5rem; }
-  .hero-tag { top: 480px; }
-  .hero-tag span { font-size: 1.7rem; }
 
-  .bg-gradient { height: 800px; }
-  .intro { margin-top: 610px; }
-
-}
 
 /* ===== 놀거리 모달 ===== */
 .play-cell { cursor: pointer; }
@@ -1510,11 +1533,15 @@ a { text-decoration: none; color: inherit; }
   .play-modal-wrap { padding: 44px 16px 48px; border-radius: 14px; }
   .pm-title { font-size: 20px; }
   .pm-badge {padding: 4px 10px; font-size: 12px;}
-  .pm-images {  gap: 8px; 
+  .pm-images { height: 70vh; gap: 8px; 
   flex-direction: column}
   .pm-img-main  { flex: 1; }
   .pm-img-side {height: 0px; flex: 2;}
-  .pm-arrow { width: 38px; height: 38px; }
+  .pm-arrow { width: 30px; height: 30
+    
+    
+    
+    px; }
   .pm-body { gap: 8px; }
   .pm-slide-header { margin-bottom: 16px; gap: 10px; }
   .play-modal-wrap { width: min(1360px, 96vw); }

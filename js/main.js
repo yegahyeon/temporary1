@@ -31,7 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
             gnb.classList.remove('open');
             document.body.style.overflow = '';
         }
+        updateEventText();
     });
+
+    const eventBgText       = document.querySelector('.event-bg-text:not(.event-bg-text-mobile)');
+    const eventBgTextMobile = document.querySelector('.event-bg-text-mobile');
+
+    function updateEventText() {
+        if (window.innerWidth <= 480) {
+            eventBgText.classList.add('hidden');
+            eventBgTextMobile.classList.remove('hidden');
+        } else {
+            eventBgText.classList.remove('hidden');
+            eventBgTextMobile.classList.add('hidden');
+        }
+    }
+    updateEventText();
 
 
     gsap.registerPlugin(ScrollTrigger,ScrollToPlugin,SplitText)
@@ -154,14 +169,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== 놀거리 모달 스와이퍼 =====
     const playModalData = [
-        { badge: 'ENJOY',         title: '대형운동장',        imgs: ['./source/act1.png', './source/act1.png', './source/act1.png'] },
-        { badge: 'ENJOY',         title: '서바이벌, ATV',     imgs: ['./source/act2.png', './source/act2.png', './source/act2.png'] },
-        { badge: 'ENJOY',         title: '갯벌체험',          imgs: ['./source/act3.png', './source/act3.png', './source/act3.png'] },
-        { badge: 'ENJOY',         title: '자전거&바이크 대여', imgs: ['./source/act4.png', './source/act4.png', './source/act4.png'] },
-        { badge: 'ENJOY',         title: '워터파크',           imgs: ['./source/act5.png', './source/act5.png', './source/act5.png'] },
-        { badge: 'ENTERTAINMENT', title: '클럽, 노래방, 당구장', imgs: ['./source/act6.png', './source/act6.png', './source/act6.png'] },
-        { badge: 'KIDS',          title: '놀이터',             imgs: ['./source/act7.png', './source/act7.png', './source/act7.png'] },
-        { badge: 'ENJOY',         title: '대형강당',           imgs: ['./source/act8.png', './source/act8.png', './source/act8.png'] },
+        { badge: 'ENJOY',         title: '대형운동장',        imgs: ['/source/act1.png', '/source/act1-2.jpg', '/source/act1-3.jpg'] },
+        { badge: 'ENJOY',         title: '서바이벌, ATV',     imgs: ['/source/act2.png', '/source/act2-2.jpg', '/source/act2-3.jpg'] },
+        { badge: 'ENJOY',         title: '갯벌체험',          imgs: ['/source/act3.png', '/source/act3-2.jpg', '/source/act3-3.jpg'] },
+        { badge: 'ENJOY',         title: '자전거&바이크 대여', imgs: ['/source/act4.png', '/source/act4-2.jpg', '/source/act4-3.jpg'] },
+        { badge: 'ENJOY',         title: '워터파크',           imgs: ['/source/act5.png', '/source/act5-2.jpg', '/source/act5-3.jpg'] },
+        { badge: 'ENTERTAINMENT', title: '클럽, 노래방, 당구장', imgs: ['/source/act6.png', '/source/act6-2.jpg', '/source/act6-3.jpg'] },
+        { badge: 'KIDS',          title: '놀이터',             imgs: ['/source/act7.png', '/source/act7-2.jpg', '/source/act7-3.jpg'] },
+        { badge: 'ENJOY',         title: '대형강당',           imgs: ['/source/act8.png', '/source/act8-2.jpg', '/source/act8-3.jpg'] },
     ];
 
     const playModal    = document.getElementById('playModal');
@@ -292,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tl4 = gsap.timeline({
             scrollTrigger: {
                 trigger : ".amenities",
-                start   : "top 5%",
+                start   : "center center",
                 end     : `+=${amenityItems.length * window.innerHeight}`,
                 pin     : true,
                 scrub   : 1,
