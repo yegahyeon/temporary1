@@ -4,6 +4,18 @@
     font-weight: normal;
     font-display: swap;
 }
+@font-face {
+    font-family: 'HS잔다리체';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2510-2@1.0/HSJandari.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ghanachocolate';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
 /* ===== Reset & Base ===== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 100%; font-size: 62.5%; overflow-x: hidden; }
@@ -390,7 +402,7 @@ a { text-decoration: none; color: inherit; }
 .event-bg-text-mobile {
   text-align: center;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-52%);
   width: 90vw;
   word-break: keep-all;
 }
