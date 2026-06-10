@@ -198,6 +198,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    // 파크골프 패키지 탭
+    const pgTabs    = document.querySelectorAll('.parkgolf-package .tap li');
+    const pgPanels  = document.querySelectorAll('.package-detail');
+    pgTabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => {
+            pgTabs.forEach(t => t.classList.remove('active'));
+            pgPanels.forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            pgPanels[i].classList.add('active');
+        });
+    });
+
+
     // 부대시설
     const amenityItems  = document.querySelectorAll(".amenity");
     const amenitiesRight = document.querySelector(".amenities-right");
